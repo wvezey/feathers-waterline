@@ -1,16 +1,18 @@
-# feathers-waterline
+# feathers-waterline-aggregate-aggregate
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/feathersjs-ecosystem/feathers-waterline.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/feathersjs-ecosystem/feathers-waterline-aggregate.svg)](https://greenkeeper.io/)
 [![Maintenance](https://img.shields.io/maintenance/no/2017.svg)](#status)
 
-[![Build Status](https://travis-ci.org/feathersjs-ecosystem/feathers-waterline.png?branch=master)](https://travis-ci.org/feathersjs-ecosystem/feathers-waterline)
-[![Code Climate](https://codeclimate.com/github/feathersjs-ecosystem/feathers-waterline.png)](https://codeclimate.com/github/feathersjs-ecosystem/feathers-waterline)
-[![Test Coverage](https://codeclimate.com/github/feathersjs-ecosystem/feathers-waterline/badges/coverage.svg)](https://codeclimate.com/github/feathersjs-ecosystem/feathers-waterline/coverage)
-[![Dependency Status](https://img.shields.io/david/feathersjs-ecosystem/feathers-waterline.svg?style=flat-square)](https://david-dm.org/feathersjs-ecosystem/feathers-waterline)
-[![Download Status](https://img.shields.io/npm/dm/feathers-waterline.svg?style=flat-square)](https://www.npmjs.com/package/feathers-waterline)
+[![Build Status](https://travis-ci.org/feathersjs-ecosystem/feathers-waterline-aggregate.png?branch=master)](https://travis-ci.org/feathersjs-ecosystem/feathers-waterline-aggregate)
+[![Code Climate](https://codeclimate.com/github/feathersjs-ecosystem/feathers-waterline-aggregate.png)](https://codeclimate.com/github/feathersjs-ecosystem/feathers-waterline-aggregate)
+[![Test Coverage](https://codeclimate.com/github/feathersjs-ecosystem/feathers-waterline-aggregate/badges/coverage.svg)](https://codeclimate.com/github/feathersjs-ecosystem/feathers-waterline-aggregate/coverage)
+[![Dependency Status](https://img.shields.io/david/feathersjs-ecosystem/feathers-waterline-aggregate.svg?style=flat-square)](https://david-dm.org/feathersjs-ecosystem/feathers-waterline-aggregate)
+[![Download Status](https://img.shields.io/npm/dm/feathers-waterline-aggregate.svg?style=flat-square)](https://www.npmjs.com/package/feathers-waterline-aggregate)
 [![Slack Status](http://slack.feathersjs.com/badge.svg)](http://slack.feathersjs.com)
 
 A database adapter for the [Waterline ORM](https://github.com/balderdashy/waterline), the ORM used by [SailsJS](http://sailsjs.org/). For detailed Waterline documentation, see the [waterline-docs repository](https://github.com/balderdashy/waterline-docs). Currently Waterline supports the following data stores:
+
+NOTE: Work In Progress. This fork intends to provide some aggregate function support not found in feathers-waterline-aggregate.
 
 - [PostgreSQL](https://github.com/balderdashy/sails-postgresql) - *0.9+ compatible*
 - [MySQL](https://github.com/balderdashy/sails-mysql) - *0.9+ compatible*
@@ -37,20 +39,20 @@ This module will continue to work as is but needs a maintainer for future featur
 ## Installation
 
 ```bash
-npm install feathers-waterline --save
+npm install feathers-waterline-aggregate --save
 ```
 
 > **ProTip:** You also need to install the waterline database adapter for the DB you want to use.
 
 ## Getting Started
 
-`feathers-waterline` hooks a Waterline Model up to a configured data store as a feathers service.
+`feathers-waterline-aggregate` hooks a Waterline Model up to a configured data store as a feathers service.
 
 ```js
 const Message = require('./models/message');
 const config = require('./config/waterline');
 const Waterline = require('waterline');
-const service = require('feathers-waterline');
+const service = require('feathers-waterline-aggregate');
 
 const ORM = new Waterline();
 
@@ -75,7 +77,7 @@ Creating a new Waterline service currently offers the following options:
 Here is an example of a Feathers server with a `messages` Waterline Model using the [Disk](https://github.com/balderdashy/sails-disk) store:
 
 ```
-$ npm install feathers feathers-rest feathers-socketio body-parser waterline sails-disk feathers-waterline
+$ npm install feathers feathers-rest feathers-socketio body-parser waterline sails-disk feathers-waterline-aggregate
 ```
 
 ```js
@@ -85,7 +87,7 @@ const socketio = require('feathers-socketio');
 const bodyParser = require('body-parser');
 const Waterline = require('waterline');
 const diskAdapter = require('sails-disk');
-const service = require('feathers-waterline');
+const service = require('feathers-waterline-aggregate');
 
 const ORM = new Waterline();
 const config = {

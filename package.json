@@ -1,8 +1,8 @@
 {
-  "name": "feathers-waterline",
+  "name": "feathers-waterline-aggregate",
   "description": "A Waterline ORM service adapter",
-  "version": "1.4.0",
-  "homepage": "https://github.com/feathersjs-ecosystem/feathers-waterline",
+  "version": "0.1.1",
+  "homepage": "https://github.com/wvezey/feathers-waterline-aggregate",
   "main": "lib/",
   "keywords": [
     "feathers",
@@ -11,13 +11,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs-ecosystem/feathers-waterline.git"
+    "url": "git+ssh://git@github.com/wvezey/feathers-waterline-aggregate.git"
   },
-  "author": {
-    "name": "Feathers contributors",
-    "email": "hello@feathersjs.com",
-    "url": "https://feathersjs.com"
-  },
+  "author": "Feathers contributors <hello@feathersjs.com> (https://feathersjs.com)",
   "contributors": [],
   "bugs": {
     "url": "https://github.com/feathersjs-ecosystem/feathers-waterline/issues"
@@ -28,7 +24,6 @@
   "scripts": {
     "prepublish": "npm run compile",
     "publish": "git push origin --tags && npm run changelog && git push origin",
-    "changelog": "github_changelog_generator && git add CHANGELOG.md && git commit -am \"Updating changelog\"",
     "release:patch": "npm version patch && npm publish",
     "release:minor": "npm version minor && npm publish",
     "release:major": "npm version major && npm publish",
@@ -48,11 +43,12 @@
     ]
   },
   "directories": {
-    "lib": "lib"
+    "example": "example",
+    "test": "test"
   },
   "dependencies": {
     "feathers-errors": "^2.0.2",
-    "feathers-query-filters": "^2.0.0",
+    "feathers-query-filters-aggregate": "^0.2.0",
     "lodash": "^4.17.4",
     "uberproto": "^1.1.2",
     "waterline-errors": "^0.10.1"

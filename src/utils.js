@@ -1,38 +1,57 @@
-import errors from 'feathers-errors';
-import { adapter as Errors } from 'waterline-errors';
+'use strict';
 
-export function errorHandler (error) {
-  let feathersError = error;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.errorHandler = errorHandler;
+exports.getOrder = getOrder;
+exports.getWhere = getWhere;
+
+var _feathersErrors = require('feathers-errors');
+
+var _feathersErrors2 = _interopRequireDefault(_feathersErrors);
+
+var _waterlineErrors = require('waterline-errors');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function errorHandler(error) {
+  var feathersError = error;
 
   if (error.constructor.name && (error.constructor.name === 'WLValidationError' || error.constructor.name === 'WLUsageError')) {
-    let e = error.toJSON();
-    let data = Object.assign({ errors: error.errors }, e);
+    var e = error.toJSON();
+    var data = _extends({ errors: error.errors }, e);
 
-    feathersError = new errors.BadRequest(e.summary, data);
+    feathersError = new _feathersErrors2.default.BadRequest(e.summary, data);
   } else if (error.message) {
     switch (error.message) {
-      case Errors.PrimaryKeyUpdate.toString():
-      case Errors.PrimaryKeyMissing.toString():
-      case Errors.PrimaryKeyCollision.toString():
-      case Errors.NotUnique.toString():
-      case Errors.InvalidAutoIncrement.toString():
-        feathersError = new errors.BadRequest(error);
+      case _waterlineErrors.adapter.PrimaryKeyUpdate.toString():
+      case _waterlineErrors.adapter.PrimaryKeyMissing.toString():
+      case _waterlineErrors.adapter.PrimaryKeyCollision.toString():
+      case _waterlineErrors.adapter.NotUnique.toString():
+      case _waterlineErrors.adapter.InvalidAutoIncrement.toString():
+        feathersError = new _feathersErrors2.default.BadRequest(error);
         break;
-      case Errors.NotFound.toString():
-        feathersError = new errors.NotFound(error);
+      case _waterlineErrors.adapter.NotFound.toString():
+        feathersError = new _feathersErrors2.default.NotFound(error);
         break;
-      case Errors.AuthFailure.toString():
-        feathersError = new errors.NotAuthenticated(error);
+      case _waterlineErrors.adapter.AuthFailure.toString():
+        feathersError = new _feathersErrors2.default.NotAuthenticated(error);
         break;
-      case Errors.CollectionNotRegistered.toString():
-      case Errors.InvalidConnection.toString():
-      case Errors.InvalidGroupBy.toString():
-      case Errors.ConnectionRelease.toString():
-      case Errors.IdentityMissing.toString():
-        feathersError = new errors.GeneralError(error);
+      case _waterlineErrors.adapter.CollectionNotRegistered.toString():
+      case _waterlineErrors.adapter.InvalidConnection.toString():
+      case _waterlineErrors.adapter.InvalidGroupBy.toString():
+      case _waterlineErrors.adapter.ConnectionRelease.toString():
+      case _waterlineErrors.adapter.IdentityMissing.toString():
+        feathersError = new _feathersErrors2.default.GeneralError(error);
         break;
-      case Errors.IdentityDuplicate.toString():
-        feathersError = new errors.Conflict(error);
+      case _waterlineErrors.adapter.IdentityDuplicate.toString():
+        feathersError = new _feathersErrors2.default.Conflict(error);
         break;
     }
   }
@@ -40,17 +59,19 @@ export function errorHandler (error) {
   throw feathersError;
 }
 
-export function getOrder (sort = {}) {
-  let order = {};
+function getOrder() {
+  var sort = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-  Object.keys(sort).forEach(name => {
+  var order = {};
+
+  Object.keys(sort).forEach(function (name) {
     order[name] = sort[name] === 1 ? 'asc' : 'desc';
   });
 
   return order;
 }
 
-const queryMappings = {
+var queryMappings = {
   $lt: '<',
   $lte: '<=',
   $gt: '>',
@@ -59,13 +80,13 @@ const queryMappings = {
   $nin: '!'
 };
 
-const specials = ['$sort', '$limit', '$skip', '$select'];
+var specials = ['$sort', '$limit', '$skip', '$select', '$min', '$max', '$sum', '$groupBy'];
 
-function getValue (value, prop) {
-  if (typeof value === 'object' && specials.indexOf(prop) === -1) {
-    let query = {};
+function getValue(value, prop) {
+  if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && specials.indexOf(prop) === -1) {
+    var query = {};
 
-    Object.keys(value).forEach(key => {
+    Object.keys(value).forEach(function (key) {
       if (queryMappings[key]) {
         query[queryMappings[key]] = value[key];
       } else {
@@ -79,15 +100,15 @@ function getValue (value, prop) {
   return value;
 }
 
-export function getWhere (query) {
-  let where = {};
+function getWhere(query) {
+  var where = {};
 
-  if (typeof query !== 'object') {
+  if ((typeof query === 'undefined' ? 'undefined' : _typeof(query)) !== 'object') {
     return {};
   }
 
-  Object.keys(query).forEach(prop => {
-    const value = query[prop];
+  Object.keys(query).forEach(function (prop) {
+    var value = query[prop];
 
     if (prop === '$or') {
       where.or = value;
