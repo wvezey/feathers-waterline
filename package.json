@@ -1,7 +1,7 @@
 {
   "name": "feathers-waterline-aggregate",
   "description": "A Waterline ORM service adapter",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "homepage": "https://github.com/wvezey/feathers-waterline-aggregate",
   "main": "lib/",
   "keywords": [
