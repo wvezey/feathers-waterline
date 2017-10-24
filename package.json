@@ -11,12 +11,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/wvezey/feathers-waterline-aggregate.git"
+    "url": "git@github.com:wvezey/feathers-waterline-aggregate.git"
   },
   "author": "Feathers contributors <hello@feathersjs.com> (https://feathersjs.com)",
   "contributors": [],
   "bugs": {
-    "url": "https://github.com/feathersjs-ecosystem/feathers-waterline/issues"
+    "url": "https://github.com/wvezey/feathers-waterline-aggregate/issues"
   },
   "engines": {
     "node": ">= 4"
