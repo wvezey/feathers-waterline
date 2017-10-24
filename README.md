@@ -12,7 +12,7 @@
 
 A database adapter for the [Waterline ORM](https://github.com/balderdashy/waterline), the ORM used by [SailsJS](http://sailsjs.org/). For detailed Waterline documentation, see the [waterline-docs repository](https://github.com/balderdashy/waterline-docs). Currently Waterline supports the following data stores:
 
-NOTE: Work In Progress. This fork intends to provide some aggregate function support not found in feathers-waterline-aggregate.
+NOTE: Work In Progress. This fork intends to provide some aggregate function support not found in feathers-waterline.
 
 - [PostgreSQL](https://github.com/balderdashy/sails-postgresql) - *0.9+ compatible*
 - [MySQL](https://github.com/balderdashy/sails-mysql) - *0.9+ compatible*
